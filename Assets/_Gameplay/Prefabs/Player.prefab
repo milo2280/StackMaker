@@ -49,7 +49,11 @@ MonoBehaviour:
   layerWall:
     serializedVersion: 2
     m_Bits: 64
+  layerBouncingCorner:
+    serializedVersion: 2
+    m_Bits: 128
   speed: 12
+  dir: 0
 --- !u!114 &1625478006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1655673b2742a4da7b5dbcfecffab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStack: {fileID: 5557992094076555229, guid: 4bf3e6f124829fe46b77abe50f1699b2, type: 3}
 --- !u!1001 &4764304463876497939
 PrefabInstance:
   m_ObjectHideFlags: 0

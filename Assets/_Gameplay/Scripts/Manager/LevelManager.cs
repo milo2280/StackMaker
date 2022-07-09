@@ -7,7 +7,6 @@ public class LevelManager : MonoBehaviour
 {
     public Player player;
     public PlayerMovement playerMovement;
-    public StackBouncing stackBouncing;
 
     public int score;
     public int currentLevel;
@@ -31,7 +30,6 @@ public class LevelManager : MonoBehaviour
 
         player = FindObjectOfType<Player>();
         playerMovement = FindObjectOfType<PlayerMovement>();
-        stackBouncing = FindObjectOfType<StackBouncing>();
     }
 
     public void FirstLevel()

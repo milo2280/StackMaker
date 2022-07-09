@@ -26,12 +26,6 @@ public class StackOfPlayer : MonoBehaviour
             LevelManager.Instance.EndLevel();
             ClearStack();
         }
-
-        if (other.CompareTag("BouncingCorner"))
-        {
-            //TODO: bounce player
-            //LevelManager.Instance.playerMovement.Bouncing();
-        }
     }
 
     private void AddStack()

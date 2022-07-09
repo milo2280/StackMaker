@@ -7,6 +7,10 @@ TagManager:
   - StackAdd
   - PlayerStack
   - StackMinus
+  - TopLeft
+  - TopRight
+  - BottomLeft
+  - BottomRight
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Wall
-  - 
+  - BouncingCorner
   - 
   - 
   - 

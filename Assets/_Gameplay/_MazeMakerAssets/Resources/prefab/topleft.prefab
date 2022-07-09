@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4007900094149760}
   - component: {fileID: 95473141101124654}
   - component: {fileID: 65662366386886858}
-  - component: {fileID: 17554030942977402}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: zhuanjiao
-  m_TagString: BouncingCorner
+  m_TagString: TopLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,23 +64,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.1, z: 0.5}
+  m_Size: {x: 1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0.05, z: -0}
---- !u!114 &17554030942977402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018072188287117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2a894c1bcdb7b43b48ecc33a201c61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerWall:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &1138843258009312
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4558600794821337}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4097831764677567}
   - component: {fileID: 137612698909626956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Box541
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224293675770841211}
   m_Layer: 5
-  m_Name: zhuanjiao1
+  m_Name: topleft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

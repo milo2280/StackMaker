@@ -7,20 +7,19 @@ public enum Direction { Forward, Back, Left, Right }
 public class PlayerMovement : MonoBehaviour
 {
     public LayerMask layerWall;
+    public LayerMask layerBouncingCorner;
     public float speed;
 
     private Vector3 downPoint, upPoint;
     private float distanceX, distanceY;
-    private Direction dir;
+    public Direction dir;
 
     private Ray ray = new Ray();
     private RaycastHit hit;
     private Vector3 start;
     private Vector3 stopPoint;
-    private Vector3 stopPoint2;
 
     private bool isStop = true;
-    private bool isBouncing = false;
 
     private Vector3 temp;
 
@@ -50,32 +49,34 @@ public class PlayerMovement : MonoBehaviour
         distanceX = Mathf.Abs(downPoint.x - upPoint.x);
         distanceY = Mathf.Abs(downPoint.y - upPoint.y);
 
-        if (distanceX < 10f && distanceY < 10f) return;
-
-        if (distanceX > distanceY)
+        if (distanceX > 10f || distanceY > 10f)
         {
-            if (downPoint.x > upPoint.x)
+            if (distanceX > distanceY)
             {
-                dir = Direction.Left;
+                if (downPoint.x > upPoint.x)
+                {
+                    dir = Direction.Left;
+                }
+                else
+                {
+                    dir = Direction.Right;
+                }
             }
             else
             {
-                dir = Direction.Right;
+                if (downPoint.y > upPoint.y)
+                {
+                    dir = Direction.Back;
+                }
+                else
+                {
+                    dir = Direction.Forward;
+                }
             }
-        }
-        else
-        {
-            if (downPoint.y > upPoint.y)
-            {
-                dir = Direction.Back;
-            }
-            else
-            {
-                dir = Direction.Forward;
-            }
-        }
 
-        FindStopPoint();
+            FindStopPoint();
+            downPoint = upPoint = Vector3.zero;
+        }
     }
 
     private void FindStopPoint()
@@ -132,17 +133,76 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isStop)
         {
+            CheckBouncing();
             SwipeDirection();
         }
 
         stopPoint.y = transform.position.y;
-
         transform.position = Vector3.MoveTowards(transform.position, stopPoint, Time.deltaTime * speed);
+    }
+
+    private void CheckBouncing()
+    {
+        start = transform.position;
+        ray = new Ray(start, -transform.up);
+
+        if (Physics.Raycast(ray, out hit, 10000, layerBouncingCorner))
+        {
+            if (hit.transform.CompareTag("TopLeft"))
+            {
+                if (dir == Direction.Forward)
+                {
+                    dir = Direction.Right;
+                }
+                else
+                {
+                    dir = Direction.Back;
+                }
+            }
+
+            if (hit.transform.CompareTag("TopRight"))
+            {
+                if (dir == Direction.Forward)
+                {
+                    dir = Direction.Left;
+                }
+                else
+                {
+                    dir = Direction.Back;
+                }
+            }
+
+            if (hit.transform.CompareTag("BottomLeft"))
+            {
+                if (dir == Direction.Back)
+                {
+                    dir = Direction.Right;
+                }
+                else
+                {
+                    dir = Direction.Forward;
+                }
+            }
+
+            if (hit.transform.CompareTag("BottomRight"))
+            {
+                if (dir == Direction.Back)
+                {
+                    dir = Direction.Left;
+                }
+                else
+                {
+                    dir = Direction.Forward;
+                }
+            }
+
+            FindStopPoint();
+        }
     }
 
     private void CheckPlayerStop()
     {
-        if ((transform.position - stopPoint).magnitude < 0.01f && !isBouncing)
+        if ((transform.position - stopPoint).magnitude < 0.01f)
         {
             isStop = true;
         }
@@ -155,18 +215,5 @@ public class PlayerMovement : MonoBehaviour
     public void ResetStopPoint()
     {
         stopPoint = new Vector3(8.5f, 2.95f, -8.5f);
-    }
-
-    public void Bouncing()
-    {
-        //TODO: bounce player - not working
-        isBouncing = true;
-        stopPoint2 = LevelManager.Instance.stackBouncing.stopPoint;
-        temp.x = stopPoint2.x;
-        temp.z = stopPoint2.z;
-        temp.y = stopPoint.y;
-
-        stopPoint = temp;
-        isBouncing = false;
     }
 }
